@@ -1,0 +1,113 @@
+[
+  {
+    "id": 1,
+    "name": "Brown Rice",
+    "type": "food",
+    "category": "grains",
+    "expirationDate": "2025-02-15",
+    "storageLocation": "pantry",
+    "quantity": "1 kg",
+    "disposalInstructions": "Recycle the plastic bag in appropriate bin.",
+    "imageLink": "https://farm8.staticflickr.com/7377/9359257263_81b080a039_z_d.jpg",
+    "fullImageLink": "https://farm8.staticflickr.com/7377/9359257263_81b080a039_z_d.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Chicken Breast",
+    "type": "food",
+    "category": "meat",
+    "expirationDate": "2025-01-10",
+    "storageLocation": "freezer",
+    "quantity": "500 g",
+    "disposalInstructions": "Dispose of packaging based on local recycling rules.",
+    "imageLink": "https://farm9.staticflickr.com/8295/8007075227_dc958c1fe6_z_d.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Carrots",
+    "type": "food",
+    "category": "vegetables",
+    "expirationDate": "2025-01-05",
+    "storageLocation": "fridge",
+    "quantity": "1 kg",
+    "disposalInstructions": "Compost organic waste.",
+    "imageLink": "https://farm2.staticflickr.com/1449/24800673529_64272a66ec_z_d.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Plastic Bottle",
+    "type": "garbage",
+    "category": "recyclable",
+    "expirationDate": null,
+    "storageLocation": "recycling bin",
+    "quantity": "1",
+    "disposalInstructions": "Recycle in the plastic bin.",
+    "imageLink": "https://farm4.staticflickr.com/3752/9684880330_9b4698f7cb_z_d.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Banana Peel",
+    "type": "garbage",
+    "category": "compostable",
+    "expirationDate": null,
+    "storageLocation": "compost bin",
+    "quantity": "1 peel",
+    "disposalInstructions": "Add to compost bin.",
+    "imageLink": "https://farm4.staticflickr.com/3752/9684880330_9b4698f7cb_z_d.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Bread Loaf",
+    "type": "food",
+    "category": "grains",
+    "expirationDate": "2025-01-07",
+    "storageLocation": "pantry",
+    "quantity": "1 loaf",
+    "disposalInstructions": "Recycle packaging; compost leftover bread.",
+    "imageLink": "https://farm4.staticflickr.com/3752/9684880330_9b4698f7cb_z_d.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Spinach",
+    "type": "food",
+    "category": "vegetables",
+    "expirationDate": "2025-01-02",
+    "storageLocation": "fridge",
+    "quantity": "200 g",
+    "disposalInstructions": "Compost organic waste.",
+    "imageLink": "https://farm4.staticflickr.com/3752/9684880330_9b4698f7cb_z_d.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Wooden Chair",
+    "type": "furniture",
+    "category": "household",
+    "expirationDate": null,
+    "storageLocation": "living room",
+    "quantity": "1",
+    "disposalInstructions": "Donate or dispose of in bulky waste collection.",
+    "imageLink": "https://farm4.staticflickr.com/3752/9684880330_9b4698f7cb_z_d.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Pork Chops",
+    "type": "food",
+    "category": "meat",
+    "expirationDate": "2025-01-08",
+    "storageLocation": "freezer",
+    "quantity": "750 g",
+    "disposalInstructions": "Follow local rules for packaging disposal.",
+    "imageLink": "https://farm4.staticflickr.com/3752/9684880330_9b4698f7cb_z_d.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Glass Bottle",
+    "type": "garbage",
+    "category": "recyclable",
+    "expirationDate": null,
+    "storageLocation": "recycling bin",
+    "quantity": "1",
+    "disposalInstructions": "Recycle in the glass bin.",
+    "imageLink": "https://farm4.staticflickr.com/3752/9684880330_9b4698f7cb_z_d.jpg"
+  }
+]
