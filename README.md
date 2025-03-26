@@ -1,0 +1,2 @@
+# EasyWaste
+EasyWaste project
