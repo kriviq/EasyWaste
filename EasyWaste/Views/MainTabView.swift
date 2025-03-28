@@ -44,6 +44,14 @@ struct MainTabView: View {
             .tabItem {
                 Label("Medicine", systemImage: "pills")
             }
+            
+            // Scan Tab
+            NavigationStack {
+                ScanView()
+            }
+            .tabItem {
+                Label("Scan", systemImage: "camera")
+            }
         }
     }
 }
