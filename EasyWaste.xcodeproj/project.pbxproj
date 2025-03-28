@@ -15,8 +15,7 @@
 		7FDF12B82C6F4F4800F5829C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDF12B72C6F4F4800F5829C /* ContentView.swift */; };
 		7FDF12BC2C6F4F4900F5829C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FDF12BB2C6F4F4900F5829C /* Assets.xcassets */; };
 		7FDF12BF2C6F4F4900F5829C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FDF12BE2C6F4F4900F5829C /* Preview Assets.xcassets */; };
-		7FE051332D974CAD0035DDBE /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7FE051322D974CAD0035DDBE /* YOLOv3.mlmodel */; };
-		7FE051352D974DD10035DDBE /* ObjectDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7FE051342D974DD10035DDBE /* ObjectDetector.mlmodel */; };
+		7FE051562D9750380035DDBE /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7FE051552D9750380035DDBE /* YOLOv3.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +29,7 @@
 		7FDF12B72C6F4F4800F5829C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7FDF12BB2C6F4F4900F5829C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FDF12BE2C6F4F4900F5829C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		7FE051322D974CAD0035DDBE /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
-		7FE051342D974DD10035DDBE /* ObjectDetector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ObjectDetector.mlmodel; sourceTree = "<group>"; };
+		7FE051552D9750380035DDBE /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -78,6 +76,7 @@
 		7FDF12B42C6F4F4800F5829C /* EasyWaste */ = {
 			isa = PBXGroup;
 			children = (
+				7FE051542D9750300035DDBE /* MLModel */,
 				7FDF12B52C6F4F4800F5829C /* EasyWasteApp.swift */,
 				7FDF12B72C6F4F4800F5829C /* ContentView.swift */,
 				7FA746252D26F84400EED2A0 /* Models */,
@@ -85,7 +84,6 @@
 				7FA746242D26F83A00EED2A0 /* Views */,
 				7F55C2CB2D1054170023EDF4 /* Info.plist */,
 				7F55C2CE2D12D2300023EDF4 /* PickerViewModel.swift */,
-				7FE0512D2D9747E50035DDBE /* MLModel */,
 				7FA931452D26D3D2006B4BD1 /* Resources */,
 				7FDF12BB2C6F4F4900F5829C /* Assets.xcassets */,
 				7FDF12BD2C6F4F4900F5829C /* Preview Content */,
@@ -103,11 +101,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		7FE0512D2D9747E50035DDBE /* MLModel */ = {
+		7FE051542D9750300035DDBE /* MLModel */ = {
 			isa = PBXGroup;
 			children = (
-				7FE051342D974DD10035DDBE /* ObjectDetector.mlmodel */,
-				7FE051322D974CAD0035DDBE /* YOLOv3.mlmodel */,
+				7FE051552D9750380035DDBE /* YOLOv3.mlmodel */,
 			);
 			path = MLModel;
 			sourceTree = "<group>";
@@ -189,12 +186,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FDF12B82C6F4F4800F5829C /* ContentView.swift in Sources */,
-				7FE051332D974CAD0035DDBE /* YOLOv3.mlmodel in Sources */,
 				7FA9313B2D24321B006B4BD1 /* CircleImage.swift in Sources */,
 				7F55C2CF2D12D23D0023EDF4 /* PickerViewModel.swift in Sources */,
 				7FDF12B62C6F4F4800F5829C /* EasyWasteApp.swift in Sources */,
+				7FE051562D9750380035DDBE /* YOLOv3.mlmodel in Sources */,
 				7FA9313F2D243496006B4BD1 /* MapView.swift in Sources */,
-				7FE051352D974DD10035DDBE /* ObjectDetector.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
