@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F55C2C72D104A400023EDF4 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F55C2C62D104A400023EDF4 /* CameraPreview.swift */; };
-		7F55C2CA2D1051DB0023EDF4 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F55C2C92D1051DB0023EDF4 /* CameraManager.swift */; };
-		7F55C2CD2D1054590023EDF4 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F55C2CC2D1054590023EDF4 /* CameraViewModel.swift */; };
 		7F55C2CF2D12D23D0023EDF4 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F55C2CE2D12D2300023EDF4 /* PickerViewModel.swift */; };
 		7FA9313B2D24321B006B4BD1 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9313A2D24321B006B4BD1 /* CircleImage.swift */; };
 		7FA9313F2D243496006B4BD1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA9313E2D243496006B4BD1 /* MapView.swift */; };
@@ -18,13 +15,12 @@
 		7FDF12B82C6F4F4800F5829C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDF12B72C6F4F4800F5829C /* ContentView.swift */; };
 		7FDF12BC2C6F4F4900F5829C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FDF12BB2C6F4F4900F5829C /* Assets.xcassets */; };
 		7FDF12BF2C6F4F4900F5829C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FDF12BE2C6F4F4900F5829C /* Preview Assets.xcassets */; };
+		7FE0512F2D9747F80035DDBE /* YOLOv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7FE0512E2D9747F80035DDBE /* YOLOv3.mlmodel */; };
+		7FE051312D9748650035DDBE /* ObjectDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7FE051302D9748650035DDBE /* ObjectDetector.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7F55C2C62D104A400023EDF4 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
-		7F55C2C92D1051DB0023EDF4 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		7F55C2CB2D1054170023EDF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		7F55C2CC2D1054590023EDF4 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		7F55C2CE2D12D2300023EDF4 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
 		7FA9313A2D24321B006B4BD1 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		7FA9313E2D243496006B4BD1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -34,6 +30,8 @@
 		7FDF12B72C6F4F4800F5829C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7FDF12BB2C6F4F4900F5829C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FDF12BE2C6F4F4900F5829C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7FE0512E2D9747F80035DDBE /* YOLOv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3.mlmodel; sourceTree = "<group>"; };
+		7FE051302D9748650035DDBE /* ObjectDetector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ObjectDetector.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -53,16 +51,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7F55C2C82D1051C80023EDF4 /* Camera */ = {
-			isa = PBXGroup;
-			children = (
-				7F55C2CC2D1054590023EDF4 /* CameraViewModel.swift */,
-				7F55C2C62D104A400023EDF4 /* CameraPreview.swift */,
-				7F55C2C92D1051DB0023EDF4 /* CameraManager.swift */,
-			);
-			path = Camera;
-			sourceTree = "<group>";
-		};
 		7FA931452D26D3D2006B4BD1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +85,7 @@
 				7FA746242D26F83A00EED2A0 /* Views */,
 				7F55C2CB2D1054170023EDF4 /* Info.plist */,
 				7F55C2CE2D12D2300023EDF4 /* PickerViewModel.swift */,
-				7F55C2C82D1051C80023EDF4 /* Camera */,
+				7FE0512D2D9747E50035DDBE /* MLModel */,
 				7FA931452D26D3D2006B4BD1 /* Resources */,
 				7FDF12BB2C6F4F4900F5829C /* Assets.xcassets */,
 				7FDF12BD2C6F4F4900F5829C /* Preview Content */,
@@ -113,6 +101,15 @@
 				7FDF12BE2C6F4F4900F5829C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7FE0512D2D9747E50035DDBE /* MLModel */ = {
+			isa = PBXGroup;
+			children = (
+				7FE051302D9748650035DDBE /* ObjectDetector.mlmodel */,
+				7FE0512E2D9747F80035DDBE /* YOLOv3.mlmodel */,
+			);
+			path = MLModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,13 +189,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FDF12B82C6F4F4800F5829C /* ContentView.swift in Sources */,
+				7FE0512F2D9747F80035DDBE /* YOLOv3.mlmodel in Sources */,
 				7FA9313B2D24321B006B4BD1 /* CircleImage.swift in Sources */,
-				7F55C2C72D104A400023EDF4 /* CameraPreview.swift in Sources */,
-				7F55C2CA2D1051DB0023EDF4 /* CameraManager.swift in Sources */,
 				7F55C2CF2D12D23D0023EDF4 /* PickerViewModel.swift in Sources */,
 				7FDF12B62C6F4F4800F5829C /* EasyWasteApp.swift in Sources */,
 				7FA9313F2D243496006B4BD1 /* MapView.swift in Sources */,
-				7F55C2CD2D1054590023EDF4 /* CameraViewModel.swift in Sources */,
+				7FE051312D9748650035DDBE /* ObjectDetector.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,8 +9,8 @@ import SwiftUI
 import AVFoundation
 
 struct ScanView: View {
-    //Initial state - set true to go directly to camera
     @State private var isShowingCamera = false
+    @State private var detectedObjects: [DetectedObject] = []
     
     var body: some View {
         VStack {
@@ -18,10 +18,34 @@ struct ScanView: View {
                 isShowingCamera = true
             }
             .sheet(isPresented: $isShowingCamera) {
-                CameraView()
+                VisionObjectDetectionCameraView(detectedObjects: $detectedObjects)
+            }
+            
+            // Display detected objects
+            List(detectedObjects, id: \.id) { object in
+                HStack {
+                    Text(object.label)
+                    Spacer()
+                    Text("\(object.confidence, specifier: "%.2f")%")
+                }
             }
         }
         .navigationTitle("Scan")
     }
 }
 
+//struct ScanView: View {
+//    @State private var isShowingCamera = true
+//    
+//    var body: some View {
+//        VStack {
+//            Button("Open Camera") {
+//                isShowingCamera = true
+//            }
+//            .sheet(isPresented: $isShowingCamera) {
+//                CameraView()
+//            }
+//        }
+//        .navigationTitle("Scan")
+//    }
+//}
