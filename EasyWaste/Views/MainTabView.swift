@@ -48,6 +48,7 @@ struct MainTabView: View {
             // Scan Tab
             NavigationStack {
                 ScanView()
+//                CameraContentView()
             }
             .tabItem {
                 Label("Scan", systemImage: "camera")

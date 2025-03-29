@@ -11,8 +11,9 @@ import VisionKit
 import Vision
 
 
-class ObjectRecognitionViewModel: NSObject {
+class ObjectRecognitionViewModel: NSObject, ObservableObject {
     var requests = [VNRequest]()
+    @Published var observations: [DetectedObject]? = nil
     
     @discardableResult
     func setupVision() -> NSError? {
@@ -30,6 +31,7 @@ class ObjectRecognitionViewModel: NSObject {
                     // perform all the UI updates on the main queue
                     if let results = request.results {
 //                        self.drawVisionRequestResults(results)
+                        self.processResults(results as! [VNRecognizedObjectObservation])
                         print("Scanned results \(results)")
                     }
                 })
@@ -42,21 +44,46 @@ class ObjectRecognitionViewModel: NSObject {
         return error
     }
     
+    private func processResults(_ results: [VNRecognizedObjectObservation]) {
+        let detectedObjects = results.map { observation -> DetectedObject in
+            let label = observation.labels.first?.identifier ?? "Unknown"
+            let confidence = observation.confidence
+            let boundingBox = observation.boundingBox
+            
+            return DetectedObject(
+                label: label,
+                confidence: confidence,
+                boundingBox: boundingBox
+            )
+        }
+        self.observations = detectedObjects
+        
+        //           DispatchQueue.main.async {
+        //               // Update UI with detected objects
+        //               NotificationCenter.default.post(
+        //                   name: .detectedObjectsUpdated,
+        //                   object: detectedObjects
+        //               )
+        //           }
+    }
+    
 }
 
 struct DetectedObject: Identifiable {
     let id = UUID()
     let label: String
-    let confidence: Double
+    let confidence: Float
+    let boundingBox: CGRect
 }
 
 struct VisionObjectDetectionCameraView: UIViewControllerRepresentable {
     @Binding var detectedObjects: [DetectedObject]
-    
+    @ObservedObject var recognitionViewModel: ObjectRecognitionViewModel = ObjectRecognitionViewModel()
     class Coordinator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         var parent: VisionObjectDetectionCameraView
         var recognitionViewModel: ObjectRecognitionViewModel
         let visionSequenceHandler = VNSequenceRequestHandler()
+        var overlayView: DetectionOverlayView?
         
         init(parent: VisionObjectDetectionCameraView, recognitionViewModel: ObjectRecognitionViewModel) {
             self.parent = parent
@@ -74,6 +101,7 @@ struct VisionObjectDetectionCameraView: UIViewControllerRepresentable {
             let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: exifOrientation, options: [:])
             do {
                 try imageRequestHandler.perform(recognitionViewModel.requests)
+//                self.parent.detectedObjects = self.recognitionViewModel.object
             } catch {
                 print(error)
             }
@@ -126,7 +154,7 @@ struct VisionObjectDetectionCameraView: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self, recognitionViewModel: ObjectRecognitionViewModel())
+        Coordinator(parent: self, recognitionViewModel: recognitionViewModel)
     }
     
     func makeUIViewController(context: Context) -> UIViewController {
@@ -151,6 +179,15 @@ struct VisionObjectDetectionCameraView: UIViewControllerRepresentable {
         previewLayer.videoGravity = .resizeAspectFill
         viewController.view.layer.addSublayer(previewLayer)
         
+        // Add the overlay view
+        let overlayView = DetectionOverlayView(frame: viewController.view.bounds)
+        overlayView.backgroundColor = .clear
+        viewController.view.addSubview(overlayView)
+        context.coordinator.overlayView = overlayView
+        
+        // Handle view layout changes
+        viewController.view.layoutSubviews()
+        
         DispatchQueue.global(qos: .background).async {
             captureSession.startRunning()
         }
@@ -158,7 +195,86 @@ struct VisionObjectDetectionCameraView: UIViewControllerRepresentable {
         return viewController
     }
     
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        print("Update VC called \(recognitionViewModel.observations)")
+        guard let obserations = recognitionViewModel.observations else { return }
+        if let overlayView = context.coordinator.overlayView {
+                    overlayView.frame = uiViewController.view.bounds
+            overlayView.updateWithDetectedObjects(obserations)
+                }
+    }
+}
+
+class DetectionOverlayView: UIView {
+    private var detectedObjects: [DetectedObject] = []
+    
+    func updateWithDetectedObjects(_ objects: [DetectedObject]) {
+        self.detectedObjects = objects
+        self.setNeedsDisplay()
+    }
+    
+    override func draw(_ rect: CGRect) {
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        
+        // Clear the overlay
+        context.clear(rect)
+        
+        for object in detectedObjects {
+            // Convert normalized coordinates to view coordinates
+            // Vision's coordinate system has (0,0) at the bottom-left
+            // UIKit's coordinate system has (0,0) at the top-left
+            let viewBox = CGRect(
+                x: object.boundingBox.origin.x * bounds.width,
+                y: (1 - object.boundingBox.origin.y - object.boundingBox.height) * bounds.height,
+                width: object.boundingBox.width * bounds.width,
+                height: object.boundingBox.height * bounds.height
+            )
+            let percentage = String(format: "%.1f", 100*(object.confidence))
+            var strokeColor = UIColor.red
+            if object.confidence > 0.5 {
+                strokeColor = UIColor.orange
+            }
+            if object.confidence > 0.8 {
+                strokeColor = UIColor.green
+            }
+            // Draw bounding box
+            context.setStrokeColor(strokeColor.cgColor)
+            context.setLineWidth(3.0)
+            context.stroke(viewBox)
+            
+            // Create label background
+            
+            let labelText = "\(object.label) \(percentage)%"
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.boldSystemFont(ofSize: 14),
+                .foregroundColor: UIColor.white
+            ]
+            let textSize = labelText.size(withAttributes: attributes)
+            
+            let labelBackground = CGRect(
+                x: viewBox.origin.x,
+                y: viewBox.origin.y - textSize.height - 5,
+                width: textSize.width + 10,
+                height: textSize.height + 5
+            )
+            
+            // Draw label background
+            context.setFillColor(UIColor.red.cgColor)
+            context.fill(labelBackground)
+            
+            // Draw label text
+            labelText.draw(at: CGPoint(
+                x: labelBackground.origin.x + 5,
+                y: labelBackground.origin.y + 2
+            ), withAttributes: attributes)
+        }
+    }
+    
+    // Make sure the overlay adapts to orientation and size changes
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setNeedsDisplay()
+    }
 }
 
 //struct CameraView: UIViewControllerRepresentable {
